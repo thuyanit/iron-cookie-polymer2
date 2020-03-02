@@ -1,0 +1,65 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="../../bower_components/iron-cookie/iron-cookie.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+
+<dom-module id="ironcookie-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-button {
+            font-family: 'Roboto', 'Noto', sans-serif;
+            font-weight: normal;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+         }
+         paper-button.green:hover {
+            background-color: var(--paper-green-400);
+         }
+         paper-button.green {
+            background-color: var(--paper-green-500);
+            color: white;
+         }
+         paper-button.green[active] {
+            background-color: var(--paper-red-500);
+         }
+         paper-button.disabled {
+            color: black;
+            background-color:#969696;
+         }
+    </style>
+  
+    <iron-cookie name="kubu_lang" value="{{value}}"></iron-cookie>
+
+    <paper-button class="green" on-click="_switchLang" data-lang="en">English</paper-button>
+    <paper-button class="green" on-click="_switchLang" data-lang="ja">Japanese</paper-button>
+    <p><b>Current cookie value:</b> {{value}}</p>
+    <p>[[language]]</p>
+  </template>
+
+  <script>/**
+ * @customElement
+ * @polymer
+ */
+class IroncookieApp extends Polymer.Element {
+  static get is() {
+    return 'ironcookie-app';
+  }
+
+  static get properties() {
+    return {};
+  }
+
+  _switchLang(event) {
+    let lang = event.target.getAttribute('data-lang');
+    this.value = lang;
+    window.location.href = window.location.origin + "/" + lang;
+  }
+
+}
+
+window.customElements.define(IroncookieApp.is, IroncookieApp);</script>
+</dom-module>
