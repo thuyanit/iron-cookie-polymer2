@@ -56,7 +56,8 @@ class IroncookieApp extends Polymer.Element {
   _switchLang(event) {
     let lang = event.target.getAttribute('data-lang');
     this.value = lang;
-    window.location.href = window.location.origin + "/" + lang;
+    //window.location.href = window.location.origin + "/" + lang;
+    window.location.href = window.location.href + "/" + lang;
   }
 
 }
